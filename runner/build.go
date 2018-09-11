@@ -12,6 +12,8 @@ func build() (string, bool) {
 
 	cmd := exec.Command("go", "build", "-o", buildPath(), root())
 
+	cmd.Env = os.Environ()
+	
 	stderr, err := cmd.StderrPipe()
 	if err != nil {
 		fatal(err)
